@@ -6,7 +6,7 @@
 /*   By: emomkus <emomkus@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 23:09:44 by emomkus           #+#    #+#             */
-/*   Updated: 2021/11/28 00:51:31 by emomkus          ###   ########.fr       */
+/*   Updated: 2021/11/28 23:50:34 by emomkus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,11 @@ int	main(void)
 
 	while (1)	/* endless loop checks for incoming signal */
 	{
-		sleep(1);
+		sleep(10);
+		// sigaction(SIGUSR1, &sa, NULL);
+		// sigaction(SIGUSR2, &sa, NULL);
 		signal(SIGUSR1, handler);
+		signal(SIGUSR2, handler);
 	}
 	return (0);
 }
