@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client_test.c                                      :+:      :+:    :+:   */
+/*   ft_printstr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emomkus <emomkus@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/26 23:09:38 by emomkus           #+#    #+#             */
-/*   Updated: 2021/11/28 23:58:32 by emomkus          ###   ########.fr       */
+/*   Created: 2021/11/22 19:52:57 by emomkus           #+#    #+#             */
+/*   Updated: 2021/11/22 22:35:37 by emomkus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-	takes server PID and sends received string to PID
-*/
+#include	"ft_printf.h"
 
-#include <unistd.h>
-#include <signal.h>
-#include "libft/libft.h"
-
-/*
-	Main
-*/
-
-int	main(int argv, char **args)
+int	printstr(char *chr)
 {
+	int	ct;
 	int	i;
-	int	pid;
-	/*
-	args[1][0] - pointer to received PID 
-	args[2][0] - pointer to received string
-	*/
-	pid = ft_atoi(args[1]);
-	while (1)
+
+	i = 0;
+	ct = 0;
+	if (!chr)
+		return (write (1, "(null)", 6));
+	while (chr[i])
 	{
-		kill(pid, SIGUSR2);
+		ct += write (1, &chr[i], 1);
+		i++;
 	}
-	return (0);
+	return (ct);
 }

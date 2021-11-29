@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server_test.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emomkus <emomkus@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: emomkus <emomkus@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 23:09:44 by emomkus           #+#    #+#             */
-/*   Updated: 2021/11/28 00:51:31 by emomkus          ###   ########.fr       */
+/*   Updated: 2021/11/29 06:10:39 by emomkus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@
 #include <signal.h>
 #include <stdio.h>
 #include <unistd.h>
+#include "printf/ft_printf.h"
+#include <execinfo.h>
 
 /*
 	Handler  
 */
 
-void handler (int num)
+void handler(int sig, siginfo_t *info, void *context)
 {
 	write(1, "Test\n", 5);
 }
@@ -33,15 +35,20 @@ void handler (int num)
 
 int	main(void)
 {
-	pid_t	id;
-
+	int	id;
+	struct	sigaction receiver;
+	
+	receiver.sa_sigaction = handler;
+	receiver.sa_flags = SA_SIGINFO;
 	id = getpid(); /* gets - process id - (PID) */
-	printf("Server pid: %d", id); /* prints process id */
+	ft_printf("Server pid: %i\n", id); /* prints process id */
 
 	while (1)	/* endless loop checks for incoming signal */
 	{
-		sleep(1);
-		signal(SIGUSR1, handler);
+		sleep(100);
+		// sigaction(SIGUSR1, &sa, NULL);
+		sigaction(SIGUSR2, &receiver, NULL);
+		// signal(SIGUSR2, handler(SIGUSR2));
 	}
 	return (0);
 }
