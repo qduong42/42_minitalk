@@ -6,17 +6,19 @@
 /*   By: emomkus <emomkus@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 23:09:38 by emomkus           #+#    #+#             */
-/*   Updated: 2021/11/28 23:58:32 by emomkus          ###   ########.fr       */
+/*   Updated: 2021/11/29 23:43:10 by emomkus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <unistd.h>
+#include <signal.h>
+#include "libft/libft.h"
 
 /*
 	takes server PID and sends received string to PID
 */
 
-#include <unistd.h>
-#include <signal.h>
-#include "libft/libft.h"
+
 
 /*
 	Main
@@ -31,9 +33,7 @@ int	main(int argv, char **args)
 	args[2][0] - pointer to received string
 	*/
 	pid = ft_atoi(args[1]);
-	while (1)
-	{
-		kill(pid, SIGUSR2);
-	}
+	kill(pid, SIGUSR2);
+	usleep(100);
 	return (0);
 }

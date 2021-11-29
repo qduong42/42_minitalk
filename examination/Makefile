@@ -6,7 +6,7 @@
 #    By: emomkus <emomkus@student.42wolfsburg.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/29 00:00:30 by emomkus           #+#    #+#              #
-#    Updated: 2021/11/29 16:56:34 by emomkus          ###   ########.fr        #
+#    Updated: 2021/11/29 23:14:19 by emomkus          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,9 +27,11 @@ NAME2 = server # server program name output #
 CLIENT_OBJ = $(CLIENT).o
 SERVER_OBJ = $(SERVER).o
 SERVER_CH_OBJ = $(SERVER)_ch.o
+CLIENT_CH_OBJ = $(CLIENT)_ch.o
 CLIENT_C = $(CLIENT).c
 SERVER_C = $(SERVER).c
 SERVER_CH_C = $(SERVER)_ch.c
+CLIENT_CH_C = $(CLIENT)_ch.c
 
 all:	
 	test -f $(LIBFT_DIR)libft.a || make re -C $(LIBFT_DIR)
@@ -60,12 +62,12 @@ re:
 ch:
 	test -f $(LIBFT_DIR)libft.a || make re -C $(LIBFT_DIR)
 	test -f $(PRINTF_DIR)libftprintf.a || make re -C $(PRINTF_DIR)
-	gcc -c $(CLIENT_C)
-	gcc $(CLIENT_OBJ) -I $(LIBFT_DIR)libft.h $(LIBFT_DIR)libft.a -I $(PRINTF_DIR)ft_printf.h $(PRINTF_DIR)libftprintf.a -o $(NAME1)
+	gcc -c $(CLIENT_CH_C)
+	gcc $(CLIENT_CH_OBJ) -I $(LIBFT_DIR)libft.h $(LIBFT_DIR)libft.a -I $(PRINTF_DIR)ft_printf.h $(PRINTF_DIR)libftprintf.a -o $(NAME1)
 	gcc -c $(SERVER_CH_C)
 	gcc $(SERVER_CH_OBJ) -I $(PRINTF_DIR)ft_printf.h $(PRINTF_DIR)libftprintf.a -o $(NAME2)
 	rm $(SERVER_CH_OBJ)
-	rm $(CLIENT_OBJ)
+	rm $(CLIENT_CH_OBJ)
 	test -f $(PRINTF_DIR)libftprintf.a || make clean -C $(PRINTF_DIR)
 	test -f $(LIBFT_DIR)libft.a || make clean -C $(LIBFT_DIR)
 

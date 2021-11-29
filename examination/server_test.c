@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server_test.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emomkus <emomkus@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: emomkus <emomkus@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 23:09:44 by emomkus           #+#    #+#             */
-/*   Updated: 2021/11/29 06:10:39 by emomkus          ###   ########.fr       */
+/*   Updated: 2021/11/29 23:45:14 by emomkus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,17 @@
 	Handler  
 */
 
-void handler(int sig, siginfo_t *info, void *context)
+// void handler(int sig, siginfo_t *info, void *context)
+// {
+// 	write(1, "Test\n", 5);
+// }
+
+void handler(int sig)
 {
-	write(1, "Test\n", 5);
+	if (sig == SIGUSR1)
+		ft_printf("0");
+	else
+		ft_printf("1");
 }
 
 /*
@@ -36,19 +44,19 @@ void handler(int sig, siginfo_t *info, void *context)
 int	main(void)
 {
 	int	id;
-	struct	sigaction receiver;
+	// struct	sigaction receiver;
 	
-	receiver.sa_sigaction = handler;
-	receiver.sa_flags = SA_SIGINFO;
+	// receiver.sa_sigaction = handler;
+	// receiver.sa_flags = SA_SIGINFO;
 	id = getpid(); /* gets - process id - (PID) */
-	ft_printf("Server pid: %i\n", id); /* prints process id */
+	ft_printf("TS Server pid: %i\n", id); /* prints process id */
 
-	while (1)	/* endless loop checks for incoming signal */
-	{
-		sleep(100);
+		/* endless loop checks for incoming signal */
 		// sigaction(SIGUSR1, &sa, NULL);
-		sigaction(SIGUSR2, &receiver, NULL);
-		// signal(SIGUSR2, handler(SIGUSR2));
-	}
+		//sigaction(SIGUSR2, &receiver, NULL);
+	signal(SIGUSR1, handler);
+	signal(SIGUSR2, handler);
+	while (1)
+		pause();
 	return (0);
 }
