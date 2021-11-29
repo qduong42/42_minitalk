@@ -42,7 +42,7 @@ It accepts struct sigaction in the same behabiour as any other datatype (int, ch
                void     (*sa_restorer)(void);
         	};
 ```
-1. **void     (*sa_handler)(int)** - pointer to a signal handling function. This function receives the signal number as its only argument.
-2. **void     (*sa_sigaction)(int, siginfo_t *, void *)** -- dependant on architecture or flags, is used instead of sa_handler.
-3. **sigset_t   sa_mask** -- specifies a mask of signals which should be blocked.
-4. **sa_flags** -- specifies a set of flags which modify the behavior of the signal like SA_SIGINFO.
+1. void     (*sa_handler)(int) - pointer to a signal handling function. This function receives the signal number as its only argument.
+2. void     (*sa_sigaction)(int, siginfo_t *, void *) -- dependant on architecture or flags, is used instead of sa_handler.
+3. sigset_t   sa_mask -- specifies a mask of signals which should be blocked.
+4. sa_flags -- specifies a set of flags which modify the behavior of the signal like SA_SIGINFO.
