@@ -8,29 +8,42 @@ handler ()
 
 allowed functions:
 ◦ write
+you know this
 ◦ ft_printf and any equivalent YOU coded
-◦ signal
+NEW signal
 void (*signal(int sig, void (*func)(int)))(int);
 ///These functions manipulate signal sets, stored in a sigset_t.  Either///
      sigemptyset() or sigfillset() must be called for every object of type///
 ////sigset_t before any other use of the object.////////
 ◦ sigemptyset
 int sigemptyset(sigset_t *set);
-     The sigemptyset() function initializes a signal set to be empty.
+NEW The sigemptyset() function initializes a signal set to be empty.
 ◦ sigaddset
-int  sigaddset(sigset_t *set, int signo);
-The sigaddset() function adds the specified signal signo to the signal
+NEW int  sigaddset(sigset_t *set, int signo);
+NEW The sigaddset() function adds the specified signal signo to the signal
      set.
 ◦ sigaction
-newer function prefered over signal- code will be more portable
+NEW newer function prefered over signal- code will be more portable
 ◦ kill
+NEW send signals between processes
 ◦ getpid
+NEW process ID
 ◦ malloc
+allocates memory
 ◦ free
+free memory
 ◦ pause
+NEW pause causes calling process to sleep until signal delivered that terminates process / causes invocation of signal-catching function
+returns -1 when signal was caught --> errno set to EINTR
 ◦ sleep
+NEW sleep for NUMBER seconds: s or m or h or d
 ◦ usleep
+NEW sleep for microsecond intervals
 ◦ exit
+NEW cause normal process termination
+void exit(int status)
+value of status & 0377 returned to parent
+atexit || on_exit ?
 
 signal handler asynchronously- can interrupt code at any point.
 
@@ -49,4 +62,4 @@ Signal: Event generated notify process or thread important situation arrived
 no: seg fault, bus error, double free
 
 bonus: QUEUEING? server confirms signal by sending 1 to client
-support Unicode chars
+support Unicode chars 1
