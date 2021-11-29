@@ -23,7 +23,13 @@ technical documentation (https://pubs.opengroup.org/onlinepubs/009695399/basedef
 ```c
 	int sigaction(int sig, const struct sigaction *restrict act, struct sigaction *restrict oact);
 ```
-							**const struct sigaction** or **struct sigaction** 
+```c
+	const struct sigaction
+```   
+or
+```c
+     struct sigaction
+```
 ### Using struct sigaction
 
 It accepts struct sigaction in the same behabiour as any other datatype (int, char, char *). Contents of struct sigaction are predefined in signal.h library and are listed in technical documentation (https://man7.org/linux/man-pages/man2/sigaction.2.html).
