@@ -6,7 +6,7 @@
 #    By: emomkus <emomkus@student.42wolfsburg.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/29 00:00:30 by emomkus           #+#    #+#              #
-#    Updated: 2021/11/29 23:14:19 by emomkus          ###   ########.fr        #
+#    Updated: 2021/11/29 23:56:40 by emomkus          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,5 +82,9 @@ libup:
 	rm $(CLIENT_OBJ)
 	make clean -C $(PRINTF_DIR)
 	make clean -C $(LIBFT_DIR)
+gitpush:
+	git add *
+	git commit -m "fast_update"
+	git push
 
 .PHONY: ch libup

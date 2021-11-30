@@ -6,7 +6,7 @@
 /*   By: emomkus <emomkus@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 23:09:44 by emomkus           #+#    #+#             */
-/*   Updated: 2021/11/29 23:45:14 by emomkus          ###   ########.fr       */
+/*   Updated: 2021/11/30 02:05:09 by emomkus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,48 +15,34 @@
 */
 
 #include <signal.h>
-#include <stdio.h>
 #include <unistd.h>
 #include "printf/ft_printf.h"
-#include <execinfo.h>
 
-/*
-	Handler  
-*/
-
-// void handler(int sig, siginfo_t *info, void *context)
-// {
-// 	write(1, "Test\n", 5);
-// }
-
-void handler(int sig)
+void	binary_receiver(int sig)
 {
-	if (sig == SIGUSR1)
-		ft_printf("0");
-	else
-		ft_printf("1");
-}
+	static int				i = 0;
+	static unsigned char	c = 0;
 
-/*
-	Main 
-*/
+	c = c | (sig == SIGUSR2);
+	if (++i == 8)
+	{
+		i = 0;
+		ft_printf("%c", c);
+		c = 0;
+	}
+	else
+		c <<= 1;
+}
 
 int	main(void)
 {
 	int	id;
-	// struct	sigaction receiver;
-	
-	// receiver.sa_sigaction = handler;
-	// receiver.sa_flags = SA_SIGINFO;
+
 	id = getpid(); /* gets - process id - (PID) */
 	ft_printf("TS Server pid: %i\n", id); /* prints process id */
-
-		/* endless loop checks for incoming signal */
-		// sigaction(SIGUSR1, &sa, NULL);
-		//sigaction(SIGUSR2, &receiver, NULL);
-	signal(SIGUSR1, handler);
-	signal(SIGUSR2, handler);
+	signal(SIGUSR1, binary_receiver);
+	signal(SIGUSR2, binary_receiver);
 	while (1)
-		pause();
+		pause(); // hypotheticaly holds from exit
 	return (0);
 }
