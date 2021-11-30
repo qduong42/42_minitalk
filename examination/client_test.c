@@ -6,7 +6,7 @@
 /*   By: emomkus <emomkus@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 23:09:38 by emomkus           #+#    #+#             */
-/*   Updated: 2021/11/30 02:06:44 by emomkus          ###   ########.fr       */
+/*   Updated: 2021/11/30 02:19:42 by emomkus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	binary_trigger(int pid, char *str)
 
 int	main(int argv, char **args)
 {
-	int	i;
 	int	pid;
 
 	pid = ft_atoi(args[1]);
