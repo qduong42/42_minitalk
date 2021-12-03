@@ -1,59 +1,66 @@
-/*
-** INCLUDES:
-** - server.h: display_pid()
-** - libft.h: ft_putchar_fd()
-** - unistd.h: pause()
-** - signal.h: signal()
-** - stdlib.h: exit()
-*/
-
-
+#include <signal.h>
+#include <unistd.h>
 #include "libft/libft.h"
 #include "printf/ft_printf.h"
-#include <unistd.h>
-#include <signal.h>
-#include <stdlib.h>
 
-/*
-** This function is the handler for messaging signals (SIGUSR1 = 0,
-** SIGUSR2 = 1). It will keep tracking of the received bits until it has
-** a full character, printing it and resetting.
-*/
-static void	handler_msg(int sig)
+// static void	action(int sig, siginfo_t *info, void *context)
+// {
+// 	static int				i = 0;
+// 	static pid_t			client_pid = 0;
+// 	static unsigned char	c = 0;
+
+// 	(void)context;
+// 	if (!client_pid)
+// 		client_pid = info->si_pid;
+// 	c = c | (sig == SIGUSR2);
+// 	if (++i == 8)
+// 	{
+// 		i = 0;
+// 		if (!c)
+// 		{
+// 			kill(client_pid, SIGUSR2);
+// 			client_pid = 0;
+// 			return ;
+// 		}
+// 		ft_printf("%c", c);
+// 		c = 0;
+// 		kill(client_pid, SIGUSR1);
+// 	}
+// 	else
+// 		c <<= 1;
+// }
+
+static void	action(int sig)
 {
-	static struct s_character	chr = {0, 0};
+	static int				i = 0;
+	static unsigned char	c = 0;
 
-	if (sig == SIGUSR2)
-		chr.character |= 1 << chr.current_bit;
-	chr.current_bit++;
-	if (chr.current_bit == 8)
+	c = c | (sig == SIGUSR2);
+	if (++i == 8)
 	{
-		ft_putchar_fd(chr.character, 1);
-		chr.character = 0;
-		chr.current_bit = 0;
+		i = 0;
+		ft_printf("%c", c);
+		c = 0;
 	}
-}
-
-/*
-** This function is the handler for terminating signals. It just calls to
-** exit(0).
-*/
-static void	handler_exit(int sig)
-{
-	(void)sig;
-	exit(0);
+	else
+		c <<= 1;
 }
 
 int	main(void)
 {
-	int	id;
-	
+	// struct sigaction	s_sigaction;
+	int					id;
+
 	id = getpid(); /* gets - process id - (PID) */
-	ft_printf("CH Server pid: %i\n", id); /* prints process id */
-	signal(SIGUSR1, handler_msg);
-	signal(SIGUSR2, handler_msg);
-	signal(SIGINT, handler_exit);
-	signal(SIGTERM, handler_exit);
+	ft_printf("TS Server pid: %i\n", id); /* prints process id */
+	// s_sigaction.sa_sigaction = action;
+	// s_sigaction.sa_flags = SA_SIGINFO;
+	// sigaction(SIGUSR1, &s_sigaction, 0);
+	// sigaction(SIGUSR2, &s_sigaction, 0);
+	signal(SIGUSR1, action);
+	signal(SIGUSR2, action);
+
 	while (1)
 		pause();
+	return (0);
 }

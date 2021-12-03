@@ -1,9 +1,11 @@
-# MINITALK Prototype directory
+# MINITALK
 
 ## Purpose
 
-this folder purposed for code testing debuging and prototyping
-expected to be removed in final repo
+42 minitalk project coloboration between emomkus and qduong
+with project our goal:
+	1. to practice git branching
+	2. colaborate together on project
 
 ## Communication method
 
