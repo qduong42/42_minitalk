@@ -6,9 +6,11 @@
 /*   By: qduong <qduong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 22:56:47 by qduong            #+#    #+#             */
-/*   Updated: 2021/11/23 20:02:18 by qduong           ###   ########.fr       */
+/*   Updated: 2021/12/03 23:49:47 by qduong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+//signal.h included in stdlib.h
 
 #ifndef LIBFT_H
 # define LIBFT_H

@@ -1,15 +1,14 @@
 NAME=lib.a
 CC=gcc
 CFLAGS=-Wall -Werror -Wextra
-SRCS= test_server.c
-SRCS1= test_client.c
+SRCS= man_server.c bonus_server.c
+SRCS1= man_client.c bonus_client.c
 SERVER = server
 CLIENT = client
 OBJS=${SRCS:.c=.o}
 OBJS1 = ${SRCS1:.c=.o}
 RM = rm -rf
-LIBRARY = make -C ./ft_printf
-
+LIBRARY = make -C ./ft_printf 
 
 all: $(NAME)
 
