@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server_test.c                                      :+:      :+:    :+:   */
+/*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emomkus <emomkus@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 23:09:44 by emomkus           #+#    #+#             */
-/*   Updated: 2021/11/30 02:27:14 by emomkus          ###   ########.fr       */
+/*   Updated: 2021/11/30 02:27:30 by emomkus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ int	main(void)
 {
 	int	id;
 
-	id = getpid(); /* gets - process id - (PID) */
-	ft_printf("Server pid: %i\n", id); /* prints process id */
+	id = getpid();
+	ft_printf("Server pid: %i\n", id);
 	signal(SIGUSR1, binary_receiver);
 	signal(SIGUSR2, binary_receiver);
 	while (1)
-		pause(); // hypotheticaly holds from exit
+		pause();
 	return (0);
 }
