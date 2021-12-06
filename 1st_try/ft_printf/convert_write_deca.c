@@ -22,7 +22,7 @@ int	convert_deca(unsigned long n)
 		i = convert_deca((n / 10));
 		convert_deca((n % 10));
 	}
-	if (n >= 0 && n < 10)
+	if (n < 10)
 	{
 		ft_putchar_fd(('0' + n), 1);
 	}

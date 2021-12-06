@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf/ft_printf.h"
+#include <signal.h>
 
 static void	binary_handler(int sig)
 {

@@ -13,18 +13,18 @@
 #include "ft_printf/ft_printf.h"
 #include <signal.h>
 
-static void	byte_counter(int i)
+static void	byte_counter(int sig)
 {
-	int			sig;
-	static int	received_bytes;
+	static int	received_bytes = 0;
 
-	received_bytes = 0;
 	if (sig == SIGUSR2)
-		received_bytes++;
+		++received_bytes;
 	else
-		write(1, &received_bytes, sizeof(received_bytes));
-	write(1, "\n", 1);
-	exit (0);
+	{
+		ft_putnbr_fd(received_bytes, 1);
+		write(1, "\n", 1);
+		exit (0);
+	}
 }
 
 static void	binary_converter(int server_pid, char *str)
@@ -35,21 +35,21 @@ static void	binary_converter(int server_pid, char *str)
 	while(*str)
 	{
 		i = 8;
-		c = str++;
+		c = *str++;
 		while (i--)
 		{
 		if (c >> i & 1)
 			kill(server_pid, SIGUSR2);
 		else
 			kill(server_pid, SIGUSR1);
-		usleep(30);
+		usleep(50);
 		}
 	}
-	i = 0;
-	while (i++)
+	i = 8;
+	while (i--)
 	{
 		kill(server_pid, SIGUSR1);
-		usleep(30);
+		usleep(50);
 	}
 }
 
@@ -72,10 +72,10 @@ int	main(int argc, char **argv)
 : ./server\nUsage: ./client <Server_PID> <string_to_send>\n");
 		return (0);
 	}
-	ft_printf("Sent    : ");
+	ft_printf("Sent characters: ");
 	ft_putnbr_fd(ft_strlen(argv[2]), 1);
 	ft_putchar_fd('\n', 1);
-	printf("Received: ");
+	ft_printf("Received characters: ");
 	signal(SIGUSR1, byte_counter);
 	signal(SIGUSR2, byte_counter);
 	binary_converter(server_pid, argv[2]);
