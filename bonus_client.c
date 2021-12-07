@@ -6,7 +6,7 @@
 /*   By: qduong <qduong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 03:50:14 by qduong            #+#    #+#             */
-/*   Updated: 2021/12/04 04:13:12 by qduong           ###   ########.fr       */
+/*   Updated: 2021/12/07 15:44:25 by qduong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,20 @@ static void	byte_counter(int sig)
 
 static void	binary_converter(int server_pid, char *str)
 {
-	char c;
-	int i;
-	
-	while(*str)
+	char	c;
+	int		i;
+
+	while (*str)
 	{
 		i = 8;
 		c = *str++;
 		while (i--)
 		{
-		if (c >> i & 1)
-			kill(server_pid, SIGUSR2);
-		else
-			kill(server_pid, SIGUSR1);
-		usleep(50);
+			if (c >> i & 1)
+				kill(server_pid, SIGUSR2);
+			else
+				kill(server_pid, SIGUSR1);
+			usleep(50);
 		}
 	}
 	i = 8;

@@ -6,7 +6,7 @@
 /*   By: qduong <qduong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 03:50:19 by qduong            #+#    #+#             */
-/*   Updated: 2021/12/04 04:19:55 by qduong           ###   ########.fr       */
+/*   Updated: 2021/12/07 15:45:07 by qduong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	binary_handler(int sig, siginfo_t *info, void *context)
 int	main(void)
 {
 	struct sigaction	s_sigaction;
-	int	id;
+	int					id;
 
 	id = getpid();
 	ft_printf("Server pid: %i\n", id);
