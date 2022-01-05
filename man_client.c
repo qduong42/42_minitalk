@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_client.c                                      :+:      :+:    :+:   */
+/*   man_client.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qduong <qduong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 03:26:11 by qduong            #+#    #+#             */
-/*   Updated: 2021/12/04 03:33:58 by qduong           ###   ########.fr       */
+/*   Updated: 2022/01/04 16:26:42 by qduong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf/ft_printf.h"
 #include <signal.h>
 
+/*converts character to binary to send over to the server bitwise,
+sleeping 30 ms in between to avoid signal loss*/
 static void	binary_converter(int server_pid, char *str)
 {
 	int		i;

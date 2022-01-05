@@ -6,12 +6,18 @@
 /*   By: qduong <qduong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 03:50:19 by qduong            #+#    #+#             */
-/*   Updated: 2021/12/07 15:45:07 by qduong           ###   ########.fr       */
+/*   Updated: 2022/01/05 10:25:29 by qduong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf/ft_printf.h"
 #include <signal.h>
+
+/*takes client PID received from using sigaction
+(in info-> si_pid if not existing), static variables 
+declared to save the value of byte transfered, PID and building
+up bitwise charsigusr 2 sent after successful putchar, sigusr1 sent to signal
+termination, since that means no information is being received from client*/
 
 static void	binary_handler(int sig, siginfo_t *info, void *context)
 {

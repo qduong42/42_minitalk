@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_server.c                                      :+:      :+:    :+:   */
+/*   man_server.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qduong <qduong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 03:36:35 by qduong            #+#    #+#             */
-/*   Updated: 2021/12/04 03:37:44 by qduong           ###   ########.fr       */
+/*   Updated: 2022/01/04 16:25:15 by qduong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf/ft_printf.h"
 #include <signal.h>
 
+/* Project sends signals defined by user SIGUSR 1 and SIGUSR 2 to represent
+binary representations of the characters that should be sent
+This is done by using bitwise operators to dismantle characters and send 
+character representation bit by bit. This project was written to be as clean
+as possible, carefully seperating the project into mandatory parts, and
+bonus parts, depending on exactly what function is needed.
+*/
+
+//handles the binary to receive signals from client
 static void	binary_handler(int sig)
 {
 	static int	i = 0;

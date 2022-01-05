@@ -6,12 +6,15 @@
 /*   By: qduong <qduong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 03:50:14 by qduong            #+#    #+#             */
-/*   Updated: 2021/12/07 15:44:25 by qduong           ###   ########.fr       */
+/*   Updated: 2022/01/05 10:30:48 by qduong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf/ft_printf.h"
 #include <signal.h>
+
+//byte counter counts characters received using 
+//sigusr2 exits when sigusr1 (else) is sent
 
 static void	byte_counter(int sig)
 {
@@ -27,6 +30,9 @@ static void	byte_counter(int sig)
 	}
 }
 
+//sends binary like in the mandatory, with exception of sending
+//8 bytes of 0  in line 51-55 to trigger exit condition
+//in server
 static void	binary_converter(int server_pid, char *str)
 {
 	char	c;
@@ -52,6 +58,9 @@ static void	binary_converter(int server_pid, char *str)
 		usleep(50);
 	}
 }
+
+//signal is used here instead of sigaction as no sigaction
+//traits need to be used: signal mask/info/flags
 
 int	main(int argc, char **argv)
 {

@@ -16,6 +16,9 @@ LIBRARY = make -C ./ft_printf
 
 all: $(NAME)
 
+#makes library in ft_printf which makes library in libft
+#copies that to lib.a in current folder CC objects with library 
+
 $(NAME) : ${OBJS} $(OBJS1) $(OBJS_BONUS) $(OBJS_BONUS1)
 	$(MAKE) -C ./ft_printf
 	cp ft_printf/libftprintf.a $(NAME)
