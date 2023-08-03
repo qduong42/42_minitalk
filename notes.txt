@@ -1,4 +1,4 @@
-Small data exchange program
+small data exchange program
 
 signals in C:
 SIGINT : Control C
