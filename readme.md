@@ -22,14 +22,15 @@ Those versions are the ones used during development.
 1. Download/Clone this repo
 
         git clone https://github.com/qduong42/42_minitalk
-2. `cd` into the root directory and run `make`
+2. `cd` into the 42_minitalk/srcs directory and run `make`
 
-        cd 42_minitalk
+        cd 42_minitalk/srcs
         make
 
 ### Running the program
 
-After running make, execute `` from the project root.
+After running make, execute `./server` from the project root.
+Open another terminal in the same folder 42_minitalk/srcs and run `./client PID [message]`
 
 ## Details about the project:
 
