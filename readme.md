@@ -36,18 +36,15 @@ Open another terminal in the same folder 42_minitalk/srcs and run `./client X [m
 
 ### Communication method
 
-examination shown that we may use **kill(USERSIG1, PID) kill(USERSIG2, PID)** functions to signal the individual bits of characters of string. *kill(USERSIG1, PID)* may mean *0* and *kill(USERSIG2, PID)* may mean *1*.
+Examination shows that we may use **kill(USERSIG1, PID) kill(USERSIG2, PID)** functions to signal the individual bits of characters of string. *kill(USERSIG1, PID)* may mean *0* and *kill(USERSIG2, PID)* may mean *1*.
 Out of these bits server shall accumulate 8bit characters.
-
-That is not sane!!! How we were supposed to figure that out Huy?
 
 we use **<<** shift operator, **&** bitwise AND and other bitwise operators to access individual bits
 
 #### Using sigaction()
 
-technical documentation of signal.h 
-it explains that we shall define a    struct sigaction   to use function sigaction(). It is a new concept we encounter of struct, so it is confusing, because we do not use typedef but:
-technical documentation (https://pubs.opengroup.org/onlinepubs/009695399/basedefs/signal.h.html) defines function's sigaction() operation. notice argument data types:
+Technical Documentation of signal.h 
+It explains that we shall define a struct sigaction   to use function sigaction(). The technical documentation (https://pubs.opengroup.org/onlinepubs/009695399/basedefs/signal.h.html) defines function's sigaction() operation. Notice the argument data types:
 
 ```c
 	int sigaction(int sig, const struct sigaction *restrict act, struct sigaction *restrict oact);
