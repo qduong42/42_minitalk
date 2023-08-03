@@ -1,13 +1,39 @@
-# MINITALK
+# MINITALK - @42Wolfsburg
 
 ## Purpose
 
-42 minitalk project coloboration between emomkus and qduong
-with project our goal:
+Minitalk is in the second ring of the Core Curriculum @42Wolfsburg.
+42 minitalk project is a collaboration between emomkus and qduong
+Our goal:
 	1. to practice git branching
-	2. colaborate together on project
+	2. collaborate together on project
 
-## Communication method
+## Installation & Usage
+
+### Requirements
+The only requirements are:
+- GNU make (v3.81)
+- GCC (12.0.0) (clang-1200.0.32.28)
+
+Those versions are the ones used during development.
+
+### Building the program
+
+1. Download/Clone this repo
+
+        git clone https://github.com/qduong42/42_minitalk
+2. `cd` into the root directory and run `make`
+
+        cd 42_minitalk
+        make
+
+### Running the program
+
+After running make, execute `` from the project root.
+
+## Details about the project:
+
+### Communication method
 
 examination shown that we may use **kill(USERSIG1, PID) kill(USERSIG2, PID)** functions to signal the individual bits of characters of string. *kill(USERSIG1, PID)* may mean *0* and *kill(USERSIG2, PID)* may mean *1*.
 Out of these bits server shall accumulate 8bit characters.
@@ -16,7 +42,7 @@ That is not sane!!! How we were supposed to figure that out Huy?
 
 we use **<<** shift operator, **&** bitwise AND and other bitwise operators to access individual bits
 
-### Using sigaction()
+#### Using sigaction()
 
 technical documentation of signal.h 
 it explains that we shall define a    struct sigaction   to use function sigaction(). It is a new concept we encounter of struct, so it is confusing, because we do not use typedef but:
@@ -32,7 +58,7 @@ or
 ```c
      struct sigaction
 ```
-### Using struct sigaction
+#### Using struct sigaction
 
 It accepts struct sigaction in the same behabiour as any other datatype (int, char, char *). Contents of struct sigaction are predefined in signal.h library and are listed in technical documentation (https://man7.org/linux/man-pages/man2/sigaction.2.html).
 ```c
