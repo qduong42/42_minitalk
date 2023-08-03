@@ -29,8 +29,8 @@ Those versions are the ones used during development.
 
 ### Running the program
 
-After running make, execute `./server` from the project root.
-Open another terminal in the same folder 42_minitalk/srcs and run `./client PID [message]`
+After running make, execute `./server` from the same folder. You should see `Server pid: X`
+Open another terminal in the same folder 42_minitalk/srcs and run `./client X [message-to-send]`
 
 ## Details about the project:
 
